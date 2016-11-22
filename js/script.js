@@ -1,5 +1,5 @@
 //Searchbar Handler
-$(function(){
+$(document).ready(function(){
 	var searchField = $('#query');
 	var icon = $('#search-btn');
 
@@ -25,4 +25,43 @@ $(function(){
 		}
 	});
 
+	$('#search-form').submit(function() {
+		e.preventDefault();
+	});
 });
+
+function search(){
+		// clear results	
+		$('#results').html('');
+		$('#buttons').html('');
+
+		//Get Form Input
+		q = $('#query').val(); 
+	}
+
+//Run GET Request on API
+	$.get(
+		"https://www.googleapis.com/youtube/v3/search", 
+			{
+				part: 'snippet, id',
+				q: q, 
+				type: 'video',
+				key: 'AIzaSyBP8SomAQH4G--qPq-iSMLdEuEQg-NIDlo'
+			}, 
+			function(data) {
+				var nextPageToken = data.nextPageToken;
+				var prevPageToken = data.prevPageToken;
+
+				// Log Data
+				console.log(data);
+
+				// $.each(data.items, function(i, item){
+					// Get Ouput -- comment --
+					//var output = getOuput(item);	
+
+					//Display results --Actually a comment --
+					//$('#results').append(output);
+				//}); 
+			}
+		);
+	
