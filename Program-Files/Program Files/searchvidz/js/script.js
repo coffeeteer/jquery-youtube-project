@@ -45,7 +45,7 @@ function search(){
 			part: 'snippet, id',
 			q: q,
 			type:'video',
-			key: 'AIzaSyBP8SomAQH4G--qPq-iSMLdEuEQg-NIDlo'},
+			key: 'AIzaSyCvk3NNMQASZgFkCNxIp9jH-l8O0PXhDUo'},
 			function(data){
 				var nextPageToken = data.nextPageToken;
 				var prevPageToken = data.prevPageToken;
@@ -60,17 +60,17 @@ function search(){
 					// Display Results
 					$('#results').append(output);
 				});
-
+				
 				var buttons = getButtons(prevPageToken, nextPageToken);
-
-				//Display Buttons
+				
+				// Display Buttons
 				$('#buttons').append(buttons);
 			}
 	);
 }
 
 // Next Page Function
-function nextPage() {
+function nextPage(){
 	var token = $('#next-button').data('token');
 	var q = $('#next-button').data('query');
 
@@ -88,7 +88,7 @@ function nextPage() {
 			q: q,
 			pageToken: token,
 			type:'video',
-			key: 'AIzaSyBP8SomAQH4G--qPq-iSMLdEuEQg-NIDlo'},
+			key: 'AIzaSyCvk3NNMQASZgFkCNxIp9jH-l8O0PXhDUo'},
 			function(data){
 				var nextPageToken = data.nextPageToken;
 				var prevPageToken = data.prevPageToken;
@@ -103,17 +103,18 @@ function nextPage() {
 					// Display Results
 					$('#results').append(output);
 				});
-
+				
 				var buttons = getButtons(prevPageToken, nextPageToken);
-
-				//Display Buttons
+				
+				// Display Buttons
 				$('#buttons').append(buttons);
 			}
 	);
 }
 
+
 // Prev Page Function
-function prevPage() {
+function prevPage(){
 	var token = $('#prev-button').data('token');
 	var q = $('#prev-button').data('query');
 
@@ -131,7 +132,7 @@ function prevPage() {
 			q: q,
 			pageToken: token,
 			type:'video',
-			key: 'AIzaSyBP8SomAQH4G--qPq-iSMLdEuEQg-NIDlo'},
+			key: 'AIzaSyCvk3NNMQASZgFkCNxIp9jH-l8O0PXhDUo'},
 			function(data){
 				var nextPageToken = data.nextPageToken;
 				var prevPageToken = data.prevPageToken;
@@ -146,10 +147,10 @@ function prevPage() {
 					// Display Results
 					$('#results').append(output);
 				});
-
+				
 				var buttons = getButtons(prevPageToken, nextPageToken);
-
-				//Display Buttons
+				
+				// Display Buttons
 				$('#buttons').append(buttons);
 			}
 	);
@@ -181,19 +182,18 @@ function getOutput(item){
 	return output;
 }
 
-//Build the buttons
-function getButtons(prevPageToken, nextPageToken) {
+// Build the buttons
+function getButtons(prevPageToken, nextPageToken){
 	if(!prevPageToken){
-		var btnoutput = '<div class="button-container">' +
-		'<button id="next-button" class="paging-button" data-token="'+ nextPageToken +'" data-query="'+ q +'"' +
-		'onclick="nextPage();">Next Page</button></div';
+		var btnoutput = '<div class="button-container">'+'<button id="next-button" class="paging-button" data-token="'+nextPageToken+'" data-query="'+q+'"' +
+		'onclick="nextPage();">Next Page</button></div>';
 	} else {
-		var btnoutput = '<div class="button-container">' +
-		'<button id="prev-button" class="paging-button" data-token="'+ prevPageToken +'" data-query="'+ q +'"' +
+		var btnoutput = '<div class="button-container">'+
+		'<button id="prev-button" class="paging-button" data-token="'+prevPageToken+'" data-query="'+q+'"' +
 		'onclick="prevPage();">Prev Page</button>' +
-		'<button id="next-button" class="paging-button" data-token="'+ nextPageToken +'" data-query= "'+ q +'"' +
-		'onclick="nextPage();">Next Page</button></div';
+		'<button id="next-button" class="paging-button" data-token="'+nextPageToken+'" data-query="'+q+'"' +
+		'onclick="nextPage();">Next Page</button></div>';
 	}
-
+	
 	return btnoutput;
 }
